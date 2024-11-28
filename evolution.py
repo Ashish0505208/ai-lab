@@ -9,7 +9,9 @@ class AICompanion:
             1: "Fire can be carried using something sturdy like a branch. Avoid flammable or unsafe options.",
             2: "Tools need to be durable and sharp. What material could fulfill this requirement?",
             3: "A wheel requires a smooth, circular shape to roll efficiently. Think about the best material to shape!",
-            4: "You can produce food by cultivating plants with help of tools to plough and can use animals, wheels to make the process faster"
+            4: "You can produce food by cultivating plants with help of tools to plough and can use animals, wheels to make the process faster",
+            5: "To make your life easier make something useful from the existing resources",
+            6: "for transportation to be easier make something that can move on its own"
         }
         return hints.get(level, "I have no hints for this level.")
 
@@ -80,7 +82,7 @@ def wheel_challenge(ai):
     if choice == "1":
         print("You create the first wheel! This invention transforms how you live and work.")
         print("Congratulations! You've unlocked the third milestone: The Wheel!")
-        agriculture_challange(ai)
+        agriculture_challenge(ai)
     elif choice == "2":
         print("A leaf cannot function as a wheel. Try again!")
         wheel_challenge(ai)
@@ -91,7 +93,7 @@ def wheel_challenge(ai):
         print("Invalid choice. Please choose 1, 2, or 3.")
         wheel_challenge(ai)
 
-def agriculture_challange(ai):
+def agriculture_challenge(ai):
     print('\nAs you have invented the wheel and tools, Now you aim to produce food on your own rather than depending on animals.')
     print('\nChallange:Produce your own food')
     print('\n[1] Get food from trees in the forest [2] Grow plants which give food by using the tools and wheels')
@@ -99,18 +101,46 @@ def agriculture_challange(ai):
     choice = input("choose an option (1/2)")
     if choice=='1':
         print('on continuous retrival of food from forest the resources may deplete. Try again')
-        agriculture_challange(ai)
+        agriculture_challenge(ai)
     elif choice=='2':
         print("You now do agriculture with the help of tools, wheel and cattle animals")
         print("Congratulations! You've unlocked the fourth milestone: Agriculture!")
         #fill
-        industrial_challange(ai)
+        industrial_challenge_basics(ai)
     else:
         print("Invalid choice. please select 1 or 2")
-        agriculture_challange(ai)
+        agriculture_challenge(ai)
     
-def industrial_challange(ai):
-    print("\n")
+def industrial_challenge_basics(ai):
+    print("\nYou have acheived farming too now . Next you aim to make your life more comfortable and easy.")
+    print("\nChallenge:Make your life more comfortable and easy")
+    print("\n[1]Make something new from wheel [2] Make something new from tools")
+    print(f'Hint: {ai.give_hint(5)}')
+    choice = input("choose an optionn 1/2")
+    if choice=='1':
+        print("You now can make some machines with the gear.")
+        print("congratulations you have made a gear from the wheel. Now make advancements in industrial revolution.")
+        #fill
+        industrial_challenge_advanced(ai)
+    elif choice=='2':
+        print("you cant make machines from tools try again!")
+        industrial_challenge_basics(ai)
+    else:
+        print("Invalid choice. please select 1 or 2")
+        industrial_challenge_basics(ai)
+    
+def industrial_challenge_advanced(ai):
+    print("\nYou have acheived some advancements in industrial revolution . Next you aim to make your life more comfortable and easy for transport.")
+    print("\nChallenge:Make your transport easier")
+    print("\n[1]Try to make a boat from the wood [2] Make a engine from the gear and wheel [3]make animals to pull the carts")
+    print(f'Hint: {ai.give_hint(6)}')
+    choice = input("choose an option 1/2/3")
+    if choice=='1':
+        print("You now can make a boat from the wood.But on land trasport cannot be acheived by boats Try again!")
+        industrial_challenge_advanced(ai)
+    elif choice=='2':
+        print("You now made an engine which will help for transportation")
+        end_game(ai)
 
 def end_game(ai):
     print("\nYou have successfully unlocked the key milestones in human evolution!")
